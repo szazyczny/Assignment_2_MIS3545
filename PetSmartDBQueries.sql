@@ -1,5 +1,4 @@
 ﻿-- Assignment 2 PetSmart DB - Pat Carney, Eddie Lehr, and Sarah Zazyczny
--- Assignment 2 PetSmart DB - Pat Carney, Eddie Lehr, and Sarah Zazyczny
 
 USE PetSmartDb;
 GO
