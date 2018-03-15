@@ -7,6 +7,45 @@ USE PetSmartDb;
 GO
 
 --CREATE TABLES
+-- Create Contact table
+CREATE TABLE Contact(
+	ContactID bigint NOT NULL PRIMARY KEY,
+	FirstName varchar (50) NOT NULL,
+	LastName varchar (50) NOT NULL);
+
+-- Create Sales Territory table
+CREATE TABLE Territory(
+  TerritoryID bigint NOT NULL PRIMARY KEY,
+  Name varchar (50) NOT NULL);
+
+-- Create Product Category table
+CREATE TABLE ProductCategory(
+  ProductCategoryID bigint NOT NULL PRIMARY KEY,
+  Name varchar (50) NOT NULL);
+  
+-- Create Pet Category table
+CREATE TABLE PetCategory(
+  PetCategoryID bigint NOT NULL PRIMARY KEY,
+  Name varchar (50) NOT NULL);
+
+  -- Create Product Subcategory table
+CREATE TABLE ProductSubcategory(
+  ProductSubcategoryID bigint NOT NULL PRIMARY KEY,
+  Name varchar (50) NOT NULL,
+  ProductCategoryID bigint FOREIGN KEY REFERENCES ProductCategory(ProductCategoryID));
+
+  -- Create Sales Employees table
+CREATE TABLE SalesEmployees(
+  SalesEmployeesID bigint NOT NULL PRIMARY KEY,
+  ContactID bigint FOREIGN KEY REFERENCES Contact(ContactID),
+  TerritoryID bigint FOREIGN KEY REFERENCES Territory(TerritoryID));
+
+  -- Create Customer table
+CREATE TABLE Customer(
+  CustomerID bigint NOT NULL PRIMARY KEY,
+  TerritoryID bigint FOREIGN KEY REFERENCES Territory(TerritoryID));
+  ALTER TABLE Customer ADD ContactID bigint FOREIGN KEY REFERENCES Contact(ContactID);
+
 -- Create Product table
 CREATE TABLE Product(
   ProductID bigint NOT NULL PRIMARY KEY,
@@ -17,28 +56,6 @@ CREATE TABLE Product(
   ALTER TABLE Product
 ALTER COLUMN ListPrice money;
 
--- Create Product Category table
-CREATE TABLE ProductCategory(
-  ProductCategoryID bigint NOT NULL PRIMARY KEY,
-  Name varchar (50) NOT NULL);
-
--- Create Product Subcategory table
-CREATE TABLE ProductSubcategory(
-  ProductSubcategoryID bigint NOT NULL PRIMARY KEY,
-  Name varchar (50) NOT NULL,
-  ProductCategoryID bigint FOREIGN KEY REFERENCES ProductCategory(ProductCategoryID));
-
--- Create Pet Category table
-CREATE TABLE PetCategory(
-  PetCategoryID bigint NOT NULL PRIMARY KEY,
-  Name varchar (50) NOT NULL);
-
--- Create Customer table
-CREATE TABLE Customer(
-  CustomerID bigint NOT NULL PRIMARY KEY,
-  TerritoryID bigint FOREIGN KEY REFERENCES Territory(TerritoryID));
-  ALTER TABLE Customer ADD ContactID bigint FOREIGN KEY REFERENCES Contact(ContactID);
-
 -- Create Sales Order table
 CREATE TABLE SalesOrder(
   SalesOrderID bigint NOT NULL PRIMARY KEY,
@@ -47,57 +64,137 @@ CREATE TABLE SalesOrder(
   SalesEmployeesID bigint FOREIGN KEY REFERENCES SalesEmployees(SalesEmployeesID),
   CustomerID bigint FOREIGN KEY REFERENCES Customer(CustomerID));
 
--- Create Sales Territory table
-CREATE TABLE Territory(
-  TerritoryID bigint NOT NULL PRIMARY KEY,
-  Name varchar (50) NOT NULL);
-
--- Create Sales Employees table
-CREATE TABLE SalesEmployees(
-  SalesEmployeesID bigint NOT NULL PRIMARY KEY,
-  ContactID bigint FOREIGN KEY REFERENCES Contact(ContactID),
-  TerritoryID bigint FOREIGN KEY REFERENCES Territory(TerritoryID));
-
--- Create Contact table
-CREATE TABLE Contact(
-	ContactID bigint NOT NULL PRIMARY KEY,
-	FirstName varchar (50) NOT NULL,
-	LastName varchar (50) NOT NULL);
-
-
 --INSERT DATA INTO TABLES
+--Populate Contact table
+insert into Contact (ContactID, FirstName, LastName) values (1, 'Loren', 'Saunt');
+insert into Contact (ContactID, FirstName, LastName) values (2, 'Maribel', 'Common');
+insert into Contact (ContactID, FirstName, LastName) values (3, 'Clo', 'Clemendet');
+insert into Contact (ContactID, FirstName, LastName) values (4, 'Nigel', 'Sympson');
+insert into Contact (ContactID, FirstName, LastName) values (5, 'Bibby', 'Prugel');
+insert into Contact (ContactID, FirstName, LastName) values (6, 'Lorenza', 'Highman');
+insert into Contact (ContactID, FirstName, LastName) values (7, 'Hebert', 'Pavlenko');
+insert into Contact (ContactID, FirstName, LastName) values (8, 'Gerek', 'Milstead');
+insert into Contact (ContactID, FirstName, LastName) values (9, 'Sigrid', 'Stileman');
+insert into Contact (ContactID, FirstName, LastName) values (10, 'Shaun', 'Flann');
+insert into Contact (ContactID, FirstName, LastName) values (11, 'Kayle', 'Clogg');
+insert into Contact (ContactID, FirstName, LastName) values (12, 'Candide', 'Musselwhite');
+insert into Contact (ContactID, FirstName, LastName) values (13, 'Tammara', 'Smeaton');
+insert into Contact (ContactID, FirstName, LastName) values (14, 'Robinia', 'Westbrook');
+insert into Contact (ContactID, FirstName, LastName) values (15, 'Galvin', 'Walch');
+insert into Contact (ContactID, FirstName, LastName) values (16, 'Murial', 'Muggeridge');
+insert into Contact (ContactID, FirstName, LastName) values (17, 'Christine', 'Longstaff');
+insert into Contact (ContactID, FirstName, LastName) values (18, 'Lilyan', 'Brucker');
+insert into Contact (ContactID, FirstName, LastName) values (19, 'Darryl', 'Westmoreland');
+insert into Contact (ContactID, FirstName, LastName) values (20, 'Karoline', 'Gimson');
+insert into Contact (ContactID, FirstName, LastName) values (21, 'Olga', 'Bracher');
+insert into Contact (ContactID, FirstName, LastName) values (22, 'Katheryn', 'Mosconi');
+insert into Contact (ContactID, FirstName, LastName) values (23, 'Fayth', 'Cremin');
+insert into Contact (ContactID, FirstName, LastName) values (24, 'Lora', 'Ivakhin');
+insert into Contact (ContactID, FirstName, LastName) values (25, 'Robinetta', 'Degoe');
+insert into Contact (ContactID, FirstName, LastName) values (26, 'Jean', 'Babonau');
+insert into Contact (ContactID, FirstName, LastName) values (27, 'Cherilynn', 'Ralph');
+insert into Contact (ContactID, FirstName, LastName) values (28, 'Daphna', 'Witcher');
+insert into Contact (ContactID, FirstName, LastName) values (29, 'Vannie', 'Cape');
+insert into Contact (ContactID, FirstName, LastName) values (30, 'Corbin', 'Whatsize');
+insert into Contact (ContactID, FirstName, LastName) values (31, 'Benson', 'Grisenthwaite');
+insert into Contact (ContactID, FirstName, LastName) values (32, 'Billy', 'Cuell');
+insert into Contact (ContactID, FirstName, LastName) values (33, 'Monah', 'Danell');
+insert into Contact (ContactID, FirstName, LastName) values (34, 'Marlowe', 'Havercroft');
+insert into Contact (ContactID, FirstName, LastName) values (35, 'Marylynne', 'MacFall');
+insert into Contact (ContactID, FirstName, LastName) values (36, 'Grazia', 'Korlat');
+insert into Contact (ContactID, FirstName, LastName) values (37, 'Micheil', 'Huby');
+insert into Contact (ContactID, FirstName, LastName) values (38, 'Kalina', 'Ciepluch');
+insert into Contact (ContactID, FirstName, LastName) values (39, 'Aleece', 'Barclay');
+insert into Contact (ContactID, FirstName, LastName) values (40, 'Samuel', 'Dunklee');
+insert into Contact (ContactID, FirstName, LastName) values (41, 'Odell', 'Colkett');
+insert into Contact (ContactID, FirstName, LastName) values (42, 'Lucinda', 'Eddies');
+insert into Contact (ContactID, FirstName, LastName) values (43, 'Kore', 'Ferreiro');
+insert into Contact (ContactID, FirstName, LastName) values (44, 'Peyton', 'Barwood');
+insert into Contact (ContactID, FirstName, LastName) values (45, 'Livy', 'Duley');
+insert into Contact (ContactID, FirstName, LastName) values (46, 'Zilvia', 'Lough');
+insert into Contact (ContactID, FirstName, LastName) values (47, 'Darb', 'Dellenbrook');
+insert into Contact (ContactID, FirstName, LastName) values (48, 'Gwyn', 'Prandy');
+insert into Contact (ContactID, FirstName, LastName) values (49, 'Sid', 'Sapsforde');
+insert into Contact (ContactID, FirstName, LastName) values (50, 'Nickie', 'Fullicks');
+insert into Contact (ContactID, FirstName, LastName) values (51, 'Peggi', 'Bountiff');
+insert into Contact (ContactID, FirstName, LastName) values (52, 'Halsy', 'Davidove');
+insert into Contact (ContactID, FirstName, LastName) values (53, 'Kelvin', 'Dallmann');
+insert into Contact (ContactID, FirstName, LastName) values (54, 'Erastus', 'Ezele');
+insert into Contact (ContactID, FirstName, LastName) values (55, 'Di', 'Enoksson');
+insert into Contact (ContactID, FirstName, LastName) values (56, 'Emylee', 'Shelbourne');
+insert into Contact (ContactID, FirstName, LastName) values (57, 'Guido', 'Shildrick');
+insert into Contact (ContactID, FirstName, LastName) values (58, 'Molly', 'Wagg');
+insert into Contact (ContactID, FirstName, LastName) values (59, 'Idelle', 'Augur');
+insert into Contact (ContactID, FirstName, LastName) values (60, 'Clint', 'Quilter');
+insert into Contact (ContactID, FirstName, LastName) values (61, 'Riki', 'Eyam');
+insert into Contact (ContactID, FirstName, LastName) values (62, 'Carter', 'Tabourier');
+insert into Contact (ContactID, FirstName, LastName) values (63, 'Kathryne', 'Yea');
+insert into Contact (ContactID, FirstName, LastName) values (64, 'Gratiana', 'Alfonsetti');
+insert into Contact (ContactID, FirstName, LastName) values (65, 'Kerk', 'Lepoidevin');
+insert into Contact (ContactID, FirstName, LastName) values (66, 'Claudine', 'Baudy');
+insert into Contact (ContactID, FirstName, LastName) values (67, 'Trixi', 'Pearsall');
+insert into Contact (ContactID, FirstName, LastName) values (68, 'Anna-diane', 'Youson');
+insert into Contact (ContactID, FirstName, LastName) values (69, 'Goddart', 'Follet');
+insert into Contact (ContactID, FirstName, LastName) values (70, 'Henryetta', 'Denyukin');
+insert into Contact (ContactID, FirstName, LastName) values (71, 'Laverna', 'Barkly');
+insert into Contact (ContactID, FirstName, LastName) values (72, 'Lisbeth', 'Mardle');
+insert into Contact (ContactID, FirstName, LastName) values (73, 'Marketa', 'Mattisssen');
+insert into Contact (ContactID, FirstName, LastName) values (74, 'Ivor', 'MacTrustram');
+insert into Contact (ContactID, FirstName, LastName) values (75, 'Margareta', 'Sivyer');
+insert into Contact (ContactID, FirstName, LastName) values (76, 'Gael', 'Casper');
+insert into Contact (ContactID, FirstName, LastName) values (77, 'Aggy', 'Formigli');
+insert into Contact (ContactID, FirstName, LastName) values (78, 'Floyd', 'Blaske');
+insert into Contact (ContactID, FirstName, LastName) values (79, 'Valentine', 'Patrono');
+insert into Contact (ContactID, FirstName, LastName) values (80, 'Binky', 'O''Shevlan');
+insert into Contact (ContactID, FirstName, LastName) values (81, 'Tailor', 'Jiracek');
+insert into Contact (ContactID, FirstName, LastName) values (82, 'Roda', 'Matteoli');
+insert into Contact (ContactID, FirstName, LastName) values (83, 'Farrel', 'Wooderson');
+insert into Contact (ContactID, FirstName, LastName) values (84, 'Sara', 'Turn');
+insert into Contact (ContactID, FirstName, LastName) values (85, 'Johnette', 'Morrel');
+insert into Contact (ContactID, FirstName, LastName) values (86, 'Westley', 'Lagde');
+insert into Contact (ContactID, FirstName, LastName) values (87, 'Cinda', 'Grady');
+insert into Contact (ContactID, FirstName, LastName) values (88, 'Harwell', 'Coots');
+insert into Contact (ContactID, FirstName, LastName) values (89, 'Julianna', 'Husher');
+insert into Contact (ContactID, FirstName, LastName) values (90, 'Marylynne', 'Bosence');
+insert into Contact (ContactID, FirstName, LastName) values (91, 'Amos', 'Keenan');
+insert into Contact (ContactID, FirstName, LastName) values (92, 'Orrin', 'Meeron');
+insert into Contact (ContactID, FirstName, LastName) values (93, 'Dan', 'Roberds');
+insert into Contact (ContactID, FirstName, LastName) values (94, 'Karlis', 'Plaide');
+insert into Contact (ContactID, FirstName, LastName) values (95, 'Carter', 'Burfield');
+insert into Contact (ContactID, FirstName, LastName) values (96, 'Deny', 'Edelheit');
+insert into Contact (ContactID, FirstName, LastName) values (97, 'Debor', 'Sandiland');
+insert into Contact (ContactID, FirstName, LastName) values (98, 'Violet', 'Dalman');
+insert into Contact (ContactID, FirstName, LastName) values (99, 'Dorie', 'McGuirk');
+insert into Contact (ContactID, FirstName, LastName) values (100, 'Benedikt', 'Vaughan-Hughes');
 
---Populate Product table
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (1, 'BLUE Adult Dog Food - Chicken & Brown Rice', 27.99, 1, 1);
-		UPDATE Product
-		SET ListPrice = 27.99
-		WHERE ProductID = 1;
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (2, 'Authority Adult Dog Food - Chicken & Rice', 34.99, 1, 1);
-		UPDATE Product
-		SET ListPrice = 34.99
-		WHERE ProductID = 2;
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (3, '9Lives Adult Cat Food - Chicken, Beef & Salmon', 9.14, 1, 2);
-		UPDATE Product
-		SET ListPrice = 9.14
-		WHERE ProductID = 3;
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (4, 'Purina Pro Plan Savor Adult Cat Food', 0.89, 2, 2);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (5, 'Purina Pro Plan SAVOR Adult Cat Food', 8.39, 1, 2);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (6, 'Tetra TretraMin Tropical Flakes', 3.06, 4, 3);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (7, 'Roudybush Mini Pellets Bird Food', 9.27, 3, 6);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (8, 'KONG AirDog Tennis Ball', 5.50, 5, 1);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (9, 'Grreat Choice Spike Ball', 4.99, 5, 1);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (10, 'Super Pet Run-About Sm Ball', 4.99, 5, 5);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (11, 'Super Pet Run-About Sm Ball', 4.99, 5, 5);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (12, 'Puppies R Us Long Body Flattie Dog', 6.99, 6, 1);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (13, 'KONG Squirrel Catnip Toy', 4.14, 6, 2);
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (14, 'ThunderLeash Dog Leash', 25.09, 10, 1);
-		UPDATE Product
-		SET ProductSubcategoryID = 9
-		WHERE ProductID = 14;
-insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (15, 'flexi New Comfort Retractable Leash', 38.35, 10, 1);
-		UPDATE Product
-		SET ProductSubcategoryID = 9
-		WHERE ProductID = 15;
+
+--Populate Pet Category table
+insert into PetCategory (PetCategoryID, Name) values (1, 'Dog');
+insert into PetCategory (PetCategoryID, Name) values (2, 'Cat');
+insert into PetCategory (PetCategoryID, Name) values (3, 'Fish');
+insert into PetCategory (PetCategoryID, Name) values (4, 'Reptile');
+insert into PetCategory (PetCategoryID, Name) values (5, 'Small Pet');
+insert into PetCategory (PetCategoryID, Name) values (6, 'Bird');
+insert into PetCategory (PetCategoryID, Name) values (7, 'Horse');
+
+--Populate Sales Territory table
+insert into Territory (TerritoryID, Name) values (1, 'Northeast');
+insert into Territory (TerritoryID, Name) values (2, 'Southeast');
+insert into Territory (TerritoryID, Name) values (3, 'Central');
+insert into Territory (TerritoryID, Name) values (4, 'Southwest');
+insert into Territory (TerritoryID, Name) values (5, 'West');
+insert into Territory (TerritoryID, Name) values (6, 'Canada');
+insert into Territory (TerritoryID, Name) values (7, 'PuertoRico');
+
+
+--Populate Product Category table
+insert into ProductCategory (ProductCategoryID, Name) values (1, 'Food');
+insert into ProductCategory (ProductCategoryID, Name) values (2, 'Toys');
+insert into ProductCategory (ProductCategoryID, Name) values (3, 'Accessories');
+insert into ProductCategory (ProductCategoryID, Name) values (4, 'Treats');
+insert into ProductCategory (ProductCategoryID, Name) values (5, 'Hygiene');
+insert into ProductCategory (ProductCategoryID, Name) values (6, 'Medical');
+
 
 --Populate Product Subcategory table
 insert into ProductSubcategory (ProductSubcategoryID, Name, ProductCategoryID) values (1, 'Dry Food', 1);
@@ -122,31 +219,24 @@ insert into ProductSubcategory (ProductSubcategoryID, Name, ProductCategoryID) v
 insert into ProductSubcategory (ProductSubcategoryID, Name, ProductCategoryID) values (21, 'Flea Repellant', 6);
 insert into ProductSubcategory (ProductSubcategoryID, Name, ProductCategoryID) values (22, 'Tick Repellant', 6);
 
---Populate Product Category table
-insert into ProductCategory (ProductCategoryID, Name) values (1, 'Food');
-insert into ProductCategory (ProductCategoryID, Name) values (2, 'Toys');
-insert into ProductCategory (ProductCategoryID, Name) values (3, 'Accessories');
-insert into ProductCategory (ProductCategoryID, Name) values (4, 'Treats');
-insert into ProductCategory (ProductCategoryID, Name) values (5, 'Hygiene');
-insert into ProductCategory (ProductCategoryID, Name) values (6, 'Medical');
 
---Populate Pet Category table
-insert into PetCategory (PetCategoryID, Name) values (1, 'Dog');
-insert into PetCategory (PetCategoryID, Name) values (2, 'Cat');
-insert into PetCategory (PetCategoryID, Name) values (3, 'Fish');
-insert into PetCategory (PetCategoryID, Name) values (4, 'Reptile');
-insert into PetCategory (PetCategoryID, Name) values (5, 'Small Pet');
-insert into PetCategory (PetCategoryID, Name) values (6, 'Bird');
-insert into PetCategory (PetCategoryID, Name) values (7, 'Horse');
+--Populate Product table
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (1, 'BLUE Adult Dog Food - Chicken & Brown Rice', 27.99, 1, 1);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (2, 'Authority Adult Dog Food - Chicken & Rice', 34.99, 1, 1);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (3, '9Lives Adult Cat Food - Chicken, Beef & Salmon', 9.14, 1, 2);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (4, 'Purina Pro Plan Savor Adult Cat Food', 0.89, 2, 2);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (5, 'Purina Pro Plan SAVOR Adult Cat Food', 8.39, 1, 2);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (6, 'Tetra TretraMin Tropical Flakes', 3.06, 4, 3);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (7, 'Roudybush Mini Pellets Bird Food', 9.27, 3, 6);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (8, 'KONG AirDog Tennis Ball', 5.50, 5, 1);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (9, 'Grreat Choice Spike Ball', 4.99, 5, 1);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (10, 'Super Pet Run-About Sm Ball', 4.99, 5, 5);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (11, 'Super Pet Run-About Sm Ball', 4.99, 5, 5);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (12, 'Puppies R Us Long Body Flattie Dog', 6.99, 6, 1);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (13, 'KONG Squirrel Catnip Toy', 4.14, 6, 2);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (14, 'ThunderLeash Dog Leash', 25.09, 9, 1);
+insert into Product (ProductID, Name, ListPrice, ProductSubcategoryID, PetCategoryID) values (15, 'flexi New Comfort Retractable Leash', 38.35, 9, 1);
 
---Populate Sales Territory table
-insert into Territory (TerritoryID, Name) values (1, 'Northeast');
-insert into Territory (TerritoryID, Name) values (2, 'Southeast');
-insert into Territory (TerritoryID, Name) values (3, 'Central');
-insert into Territory (TerritoryID, Name) values (4, 'Southwest');
-insert into Territory (TerritoryID, Name) values (5, 'West');
-insert into Territory (TerritoryID, Name) values (6, 'Canada');
-insert into Territory (TerritoryID, Name) values (7, 'PuertoRico');
 
 --Populate Sales Employees table
 insert into SalesEmployees (SalesEmployeesID, ContactID, TerritoryID) values (1, 3, 4);
@@ -252,107 +342,6 @@ insert into Customer (CustomerID, TerritoryID, ContactID) values (73, 7, 67);
 insert into Customer (CustomerID, TerritoryID, ContactID) values (74, 2, 49);
 insert into Customer (CustomerID, TerritoryID, ContactID) values (75, 7, 36);
 
---Populate Contact table
-insert into Contact (ContactID, FirstName, LastName) values (1, 'Loren', 'Saunt');
-insert into Contact (ContactID, FirstName, LastName) values (2, 'Maribel', 'Common');
-insert into Contact (ContactID, FirstName, LastName) values (3, 'Clo', 'Clemendet');
-insert into Contact (ContactID, FirstName, LastName) values (4, 'Nigel', 'Sympson');
-insert into Contact (ContactID, FirstName, LastName) values (5, 'Bibby', 'Prugel');
-insert into Contact (ContactID, FirstName, LastName) values (6, 'Lorenza', 'Highman');
-insert into Contact (ContactID, FirstName, LastName) values (7, 'Hebert', 'Pavlenko');
-insert into Contact (ContactID, FirstName, LastName) values (8, 'Gerek', 'Milstead');
-insert into Contact (ContactID, FirstName, LastName) values (9, 'Sigrid', 'Stileman');
-insert into Contact (ContactID, FirstName, LastName) values (10, 'Shaun', 'Flann');
-insert into Contact (ContactID, FirstName, LastName) values (11, 'Kayle', 'Clogg');
-insert into Contact (ContactID, FirstName, LastName) values (12, 'Candide', 'Musselwhite');
-insert into Contact (ContactID, FirstName, LastName) values (13, 'Tammara', 'Smeaton');
-insert into Contact (ContactID, FirstName, LastName) values (14, 'Robinia', 'Westbrook');
-insert into Contact (ContactID, FirstName, LastName) values (15, 'Galvin', 'Walch');
-insert into Contact (ContactID, FirstName, LastName) values (16, 'Murial', 'Muggeridge');
-insert into Contact (ContactID, FirstName, LastName) values (17, 'Christine', 'Longstaff');
-insert into Contact (ContactID, FirstName, LastName) values (18, 'Lilyan', 'Brucker');
-insert into Contact (ContactID, FirstName, LastName) values (19, 'Darryl', 'Westmoreland');
-insert into Contact (ContactID, FirstName, LastName) values (20, 'Karoline', 'Gimson');
-insert into Contact (ContactID, FirstName, LastName) values (21, 'Olga', 'Bracher');
-insert into Contact (ContactID, FirstName, LastName) values (22, 'Katheryn', 'Mosconi');
-insert into Contact (ContactID, FirstName, LastName) values (23, 'Fayth', 'Cremin');
-insert into Contact (ContactID, FirstName, LastName) values (24, 'Lora', 'Ivakhin');
-insert into Contact (ContactID, FirstName, LastName) values (25, 'Robinetta', 'Degoe');
-insert into Contact (ContactID, FirstName, LastName) values (26, 'Jean', 'Babonau');
-insert into Contact (ContactID, FirstName, LastName) values (27, 'Cherilynn', 'Ralph');
-insert into Contact (ContactID, FirstName, LastName) values (28, 'Daphna', 'Witcher');
-insert into Contact (ContactID, FirstName, LastName) values (29, 'Vannie', 'Cape');
-insert into Contact (ContactID, FirstName, LastName) values (30, 'Corbin', 'Whatsize');
-insert into Contact (ContactID, FirstName, LastName) values (31, 'Benson', 'Grisenthwaite');
-insert into Contact (ContactID, FirstName, LastName) values (32, 'Billy', 'Cuell');
-insert into Contact (ContactID, FirstName, LastName) values (33, 'Monah', 'Danell');
-insert into Contact (ContactID, FirstName, LastName) values (34, 'Marlowe', 'Havercroft');
-insert into Contact (ContactID, FirstName, LastName) values (35, 'Marylynne', 'MacFall');
-insert into Contact (ContactID, FirstName, LastName) values (36, 'Grazia', 'Korlat');
-insert into Contact (ContactID, FirstName, LastName) values (37, 'Micheil', 'Huby');
-insert into Contact (ContactID, FirstName, LastName) values (38, 'Kalina', 'Ciepluch');
-insert into Contact (ContactID, FirstName, LastName) values (39, 'Aleece', 'Barclay');
-insert into Contact (ContactID, FirstName, LastName) values (40, 'Samuel', 'Dunklee');
-insert into Contact (ContactID, FirstName, LastName) values (41, 'Odell', 'Colkett');
-insert into Contact (ContactID, FirstName, LastName) values (42, 'Lucinda', 'Eddies');
-insert into Contact (ContactID, FirstName, LastName) values (43, 'Kore', 'Ferreiro');
-insert into Contact (ContactID, FirstName, LastName) values (44, 'Peyton', 'Barwood');
-insert into Contact (ContactID, FirstName, LastName) values (45, 'Livy', 'Duley');
-insert into Contact (ContactID, FirstName, LastName) values (46, 'Zilvia', 'Lough');
-insert into Contact (ContactID, FirstName, LastName) values (47, 'Darb', 'Dellenbrook');
-insert into Contact (ContactID, FirstName, LastName) values (48, 'Gwyn', 'Prandy');
-insert into Contact (ContactID, FirstName, LastName) values (49, 'Sid', 'Sapsforde');
-insert into Contact (ContactID, FirstName, LastName) values (50, 'Nickie', 'Fullicks');
-insert into Contact (ContactID, FirstName, LastName) values (51, 'Peggi', 'Bountiff');
-insert into Contact (ContactID, FirstName, LastName) values (52, 'Halsy', 'Davidove');
-insert into Contact (ContactID, FirstName, LastName) values (53, 'Kelvin', 'Dallmann');
-insert into Contact (ContactID, FirstName, LastName) values (54, 'Erastus', 'Ezele');
-insert into Contact (ContactID, FirstName, LastName) values (55, 'Di', 'Enoksson');
-insert into Contact (ContactID, FirstName, LastName) values (56, 'Emylee', 'Shelbourne');
-insert into Contact (ContactID, FirstName, LastName) values (57, 'Guido', 'Shildrick');
-insert into Contact (ContactID, FirstName, LastName) values (58, 'Molly', 'Wagg');
-insert into Contact (ContactID, FirstName, LastName) values (59, 'Idelle', 'Augur');
-insert into Contact (ContactID, FirstName, LastName) values (60, 'Clint', 'Quilter');
-insert into Contact (ContactID, FirstName, LastName) values (61, 'Riki', 'Eyam');
-insert into Contact (ContactID, FirstName, LastName) values (62, 'Carter', 'Tabourier');
-insert into Contact (ContactID, FirstName, LastName) values (63, 'Kathryne', 'Yea');
-insert into Contact (ContactID, FirstName, LastName) values (64, 'Gratiana', 'Alfonsetti');
-insert into Contact (ContactID, FirstName, LastName) values (65, 'Kerk', 'Lepoidevin');
-insert into Contact (ContactID, FirstName, LastName) values (66, 'Claudine', 'Baudy');
-insert into Contact (ContactID, FirstName, LastName) values (67, 'Trixi', 'Pearsall');
-insert into Contact (ContactID, FirstName, LastName) values (68, 'Anna-diane', 'Youson');
-insert into Contact (ContactID, FirstName, LastName) values (69, 'Goddart', 'Follet');
-insert into Contact (ContactID, FirstName, LastName) values (70, 'Henryetta', 'Denyukin');
-insert into Contact (ContactID, FirstName, LastName) values (71, 'Laverna', 'Barkly');
-insert into Contact (ContactID, FirstName, LastName) values (72, 'Lisbeth', 'Mardle');
-insert into Contact (ContactID, FirstName, LastName) values (73, 'Marketa', 'Mattisssen');
-insert into Contact (ContactID, FirstName, LastName) values (74, 'Ivor', 'MacTrustram');
-insert into Contact (ContactID, FirstName, LastName) values (75, 'Margareta', 'Sivyer');
-insert into Contact (ContactID, FirstName, LastName) values (76, 'Gael', 'Casper');
-insert into Contact (ContactID, FirstName, LastName) values (77, 'Aggy', 'Formigli');
-insert into Contact (ContactID, FirstName, LastName) values (78, 'Floyd', 'Blaske');
-insert into Contact (ContactID, FirstName, LastName) values (79, 'Valentine', 'Patrono');
-insert into Contact (ContactID, FirstName, LastName) values (80, 'Binky', 'O''Shevlan');
-insert into Contact (ContactID, FirstName, LastName) values (81, 'Tailor', 'Jiracek');
-insert into Contact (ContactID, FirstName, LastName) values (82, 'Roda', 'Matteoli');
-insert into Contact (ContactID, FirstName, LastName) values (83, 'Farrel', 'Wooderson');
-insert into Contact (ContactID, FirstName, LastName) values (84, 'Sara', 'Turn');
-insert into Contact (ContactID, FirstName, LastName) values (85, 'Johnette', 'Morrel');
-insert into Contact (ContactID, FirstName, LastName) values (86, 'Westley', 'Lagde');
-insert into Contact (ContactID, FirstName, LastName) values (87, 'Cinda', 'Grady');
-insert into Contact (ContactID, FirstName, LastName) values (88, 'Harwell', 'Coots');
-insert into Contact (ContactID, FirstName, LastName) values (89, 'Julianna', 'Husher');
-insert into Contact (ContactID, FirstName, LastName) values (90, 'Marylynne', 'Bosence');
-insert into Contact (ContactID, FirstName, LastName) values (91, 'Amos', 'Keenan');
-insert into Contact (ContactID, FirstName, LastName) values (92, 'Orrin', 'Meeron');
-insert into Contact (ContactID, FirstName, LastName) values (93, 'Dan', 'Roberds');
-insert into Contact (ContactID, FirstName, LastName) values (94, 'Karlis', 'Plaide');
-insert into Contact (ContactID, FirstName, LastName) values (95, 'Carter', 'Burfield');
-insert into Contact (ContactID, FirstName, LastName) values (96, 'Deny', 'Edelheit');
-insert into Contact (ContactID, FirstName, LastName) values (97, 'Debor', 'Sandiland');
-insert into Contact (ContactID, FirstName, LastName) values (98, 'Violet', 'Dalman');
-insert into Contact (ContactID, FirstName, LastName) values (99, 'Dorie', 'McGuirk');
-insert into Contact (ContactID, FirstName, LastName) values (100, 'Benedikt', 'Vaughan-Hughes');
 
 --Populate Sales Orders table
 insert into SalesOrder (SalesOrderID, OrderQty, ProductID, SalesEmployeesID, CustomerID) values (1, 20, 9, 8, 3);
@@ -657,7 +646,6 @@ insert into SalesOrder (SalesOrderID, OrderQty, ProductID, SalesEmployeesID, Cus
 insert into SalesOrder (SalesOrderID, OrderQty, ProductID, SalesEmployeesID, CustomerID) values (300, 17, 6, 18, 26);
 
 
---QUERIES
 SELECT * FROM Product;
 SELECT * FROM ProductCategory;
 SELECT * FROM ProductSubcategory;
